@@ -1,0 +1,35 @@
+<html>
+<head>
+	<title>Weather</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	<script>
+
+	$(document).ready(function(){
+		$('form').submit(function(){
+			var city = $('#city').val();
+			$.get('http://api.openweathermap.org/data/2.5/weather?q='+ city +'&appid=8bd8ab3a4b925b1101d214506441b5cd', function(res){
+				console.log(res)
+
+				console.log(res.weather[0].description);
+
+
+				$('#info').append(res.weather[0].description)
+
+			}, 'json');
+
+		return false;
+		});
+
+	});
+	</script>
+</head>
+<body>
+	<form>
+		<input type='text' id='city'>
+		<button>City</button>
+	</form>
+	<div id='info'>
+		City Info goes here
+	</div>
+</body>
+</html>
